@@ -3,7 +3,9 @@ const fs = require('fs')
 const xp = require('./xp.json');
 const bot = new Discord.Client();
 var prefix = "s!"
+
 require('events').EventEmitter.defaultMaxListeners = 30;
+bot.commands = new Discord.Collection();
 
 bot.on("ready", async () =>{
     console.log(`Samaël est bien connecté !`)
@@ -16,7 +18,7 @@ bot.commands = new Discord.Collection();
 
 bot.on("message", message =>{
     if(!message.guild) return
-    if(message.content === prefix + "help"){
+    if(message.content === prefix + 'help') {
         let HelpEmbed = new Discord.RichEmbed()
         .setTitle("**Les commandes :**")
         .addField("**s!staff :**", "**Dit touts les membres du staff.**")
@@ -35,8 +37,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(HelpEmbed)
     }
-});
-
+})
 bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "help staff"){
@@ -55,7 +56,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(HelpStaffEmbed)
     }
-});
+}); 
 
 bot.on('guildMemberAdd', function (member) {
     let JoinEmbed = new Discord.RichEmbed()
@@ -96,6 +97,7 @@ bot.on("message", message =>{
         .addField("**Darksam#3361 :**", "**Modérateur et Helper.**")
         .addField("**clanistini#1274**", "**Modérateur et Helper.**")
         .addField("**Léo🎃👻🕯#8515**", "**Modérateur et Helper.**")
+        .addField("**! NeaLto#7448**", "**Modérateur.**")
         .setFooter("| Commande s!staff | Serveur des démons | Samaël | Développé par M - S #0246 |")
         .setColor('#600303')
         message.channel.send(StaffEmbed)
@@ -130,7 +132,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(PingouseEmbed)
     }
-});
+}); 
 
 bot.on("message", message =>{
     if(!message.guild) return
@@ -217,7 +219,7 @@ bot.on('message', function (message) {
             .setTitle("**J'ai supprimé touts les messages demandés !**")
             .setFooter("| Commande s!clear | Serveur des démons | Samaël | Développé par M - S #0246 |")
             .setColor('#600303')
-            message.channel.send(ClearEmbed)
+            message.channel.send(ClearEmbed).then(message => {message.delete(1000)})
         }
     }
 });
@@ -227,6 +229,7 @@ bot.on("message", message =>{
     if(message.content === prefix + "modo"){
         let ModoEmbed = new Discord.RichEmbed()
         .setTitle("**Les modérateurs sont :**")
+        .setDescription("**! NeaLto#7448.**")
         .addField("**clanistini#1274.**", "**Darksam#3361.**")
         .addField("**Léo🎃👻🕯#8515.**", "**M - S#0246.**")
         .setFooter("| Commande s!modo | Serveur des démons | Samaël | Développé par M - S #0246 |")
@@ -240,6 +243,7 @@ bot.on("message", message =>{
     if(message.content === prefix + "modérateurs"){
         let ModérateursEmbed = new Discord.RichEmbed()
         .setTitle("**Les modérateurs sont :**")
+        .setDescription("**! NeaLto#7448.**")
         .addField("**clanistini#1274.**", "**Darksam#3361.**")
         .addField("**Léo🎃👻🕯#8515.**", "**M - S#0246.**")
         .setFooter("| Commande s!modérateurs | Serveur des démons | Samaël | Développé par M - S #0246 |")
@@ -393,25 +397,26 @@ bot.on("message", function (message) {
     }
 });
 
-let AddXp = Math.floor(Math.random () * 5) + 1;
-
-if (!xp[message.author.id]) {
-    ep[message.author.id] = {
-        xp: 0,
-        niveau: 1
-    };
-}
-
-let currentXp = xp[msg.author.id].xp;
-let currentNiveau = xp[msg.author.id].niveau;
-let nextLevel = currentNiveau *10;
-xp[message.author.id].xp = currentXp + AddXp;
-
-if(nextLevel <= currentXp) {
-    xp[message.author.id].niveau += 1;
-    message.channel.get('').send(message.author.username + ` tu es passé niveau ${currentNiveau +1}, bravo à toi et continu(e) d'être actif !`)
-}
-
-fs.writeFile('./xp.json', JSON.stringify(xp), error =>{
-    if (error) console.log(error);
-});
+bot.on('message', message =>{
+    if(!message.guild) return
+    if(message.content === prefix + "raidtest"){
+        var channelssd = message.guild.createChannel('raid', {
+            type: 'text',
+            permissionOverwrites: [{
+              id: '636122698077962240',
+              deny: [],
+              allow: ['VIEW_CHANNEL']
+            },
+            {
+                id: message.author.id,
+                allow: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
+            },]
+        })
+        bot.on('message', message => {
+            const channel = member.guild.channels.find('name', 'raid');
+            if (!channel) return;
+            channel.send(`a`);
+            }
+            );
+    }
+})
