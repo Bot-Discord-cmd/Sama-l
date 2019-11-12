@@ -16,6 +16,25 @@ bot.login("mon token");
 
 bot.commands = new Discord.Collection();
 
+bot.on('guildMemberAdd', function (member) {
+    let JoinEmbed = new Discord.RichEmbed()
+        .setDescription("Oh, attends ! Ce n'est pas " + member.user.username + " ? Grâce à cette magnifique personne, nous sommes maintenant " +member.guild.memberCount + " !")
+        .setFooter("| Message de bienvenu | Serveur des démons | Samaël | Développé par M - S#0246 |")
+        .setColor('#600303')
+    member.guild.channels.get('637254649455312916').send(JoinEmbed)
+    member.addRole('636122698077962240')
+    console.log("Une personne vient de rejoindre !")
+});
+
+bot.on('guildMemberRemove', function (member) {
+    let LeaveEmbed = new Discord.RichEmbed()
+        .setDescription("Oh, attends ! " + member.user.username + " vient tragiquement de nous quitter... Nous sommes maintenant " +member.guild.memberCount + ", nous nous souviendrons de toi... C'était qui ?")
+        .setFooter("| Message d'au revoir | Serveur des démons | Samaël | Développé par M - S#0246 |")
+        .setColor('#600303')
+    member.guild.channels.get('637255142034374667').send(LeaveEmbed)
+    console.log("Une personne vient de quitter !")
+});
+
 bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + 'help') {
@@ -37,8 +56,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(HelpEmbed)
     }
-})
-bot.on("message", message =>{
+
     if(!message.guild) return
     if(message.content === prefix + "help staff"){
         let HelpStaffEmbed = new Discord.RichEmbed()
@@ -56,28 +74,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(HelpStaffEmbed)
     }
-}); 
 
-bot.on('guildMemberAdd', function (member) {
-    let JoinEmbed = new Discord.RichEmbed()
-        .setDescription("Oh, attends ! Ce n'est pas " + member.user.username + " ? Grâce à cette magnifique personne, nous sommes maintenant " +member.guild.memberCount + " !")
-        .setFooter("| Message de bienvenu | Serveur des démons | Samaël | Développé par M - S#0246 |")
-        .setColor('#600303')
-    member.guild.channels.get('637254649455312916').send(JoinEmbed)
-    member.addRole('636122698077962240')
-    console.log("Une personne vient de rejoindre !")
-});
-
-bot.on('guildMemberRemove', function (member) {
-    let LeaveEmbed = new Discord.RichEmbed()
-        .setDescription("Oh, attends ! " + member.user.username + " vient tragiquement de nous quitter... Nous sommes maintenant " +member.guild.memberCount + ", nous nous souviendrons de toi... C'était qui ?")
-        .setFooter("| Message d'au revoir | Serveur des démons | Samaël | Développé par M - S#0246 |")
-        .setColor('#600303')
-    member.guild.channels.get('637255142034374667').send(LeaveEmbed)
-    console.log("Une personne vient de quitter !")
-})
-
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "ping"){
         let PingEmbed = new Discord.RichEmbed()
@@ -86,9 +83,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(PingEmbed)
     }
-});
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "staff"){
         let StaffEmbed = new Discord.RichEmbed()
@@ -102,9 +97,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(StaffEmbed)
     }
-});
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "staffese"){
         let StaffeseEmbed = new Discord.RichEmbed()
@@ -119,9 +112,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(StaffeseEmbed)
     }
-});
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "pingouse"){
         let PingouseEmbed = new Discord.RichEmbed()
@@ -132,9 +123,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(PingouseEmbed)
     }
-}); 
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "bienquifaitlemal"){
         let BienQuiFaitLeMalEmbed = new Discord.RichEmbed()
@@ -144,9 +133,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(BienQuiFaitLeMalEmbed)
     }
-});
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "fonda"){
         let FondaEmbed = new Discord.RichEmbed()
@@ -155,9 +142,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(FondaEmbed)
     }
-});
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "fondateur"){
         let FondateurEmbed = new Discord.RichEmbed()
@@ -166,9 +151,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(FondateurEmbed)
     }
-});
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "admin"){
         let AdminEmbed = new Discord.RichEmbed()
@@ -178,9 +161,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(AdminEmbed)
     }
-});
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "administrateurs"){
         let AdministrateursEmbed = new Discord.RichEmbed()
@@ -190,9 +171,7 @@ bot.on("message", message =>{
         .setColor('#600303')
         message.channel.send(AdministrateursEmbed)
     }
-});
 
-bot.on("message", message =>{
     if(!message.guild) return
     if(message.content === prefix + "partenariat1"){
         let Partenariat1Embed = new Discord.RichEmbed()
@@ -201,6 +180,49 @@ bot.on("message", message =>{
         .setFooter("| Serveur des démons | Samaël | Développé par M - S #0246 |")
         .setColor('#600303')
         message.channel.send(Partenariat1Embed)
+    }
+
+    if(!message.guild) return
+    if(message.content === prefix + "modo"){
+        let ModoEmbed = new Discord.RichEmbed()
+        .setTitle("**Les modérateurs sont :**")
+        .setDescription("**! NeaLto#7448.**")
+        .addField("**clanistini#1274.**", "**Darksam#3361.**")
+        .addField("**Léo🎃👻🕯#8515.**", "**M - S#0246.**")
+        .setFooter("| Commande s!modo | Serveur des démons | Samaël | Développé par M - S #0246 |")
+        .setColor('#600303')
+        message.channel.send(ModoEmbed)
+    }
+
+    if(!message.guild) return
+    if(message.content === prefix + "modérateurs"){
+        let ModérateursEmbed = new Discord.RichEmbed()
+        .setTitle("**Les modérateurs sont :**")
+        .setDescription("**! NeaLto#7448.**")
+        .addField("**clanistini#1274.**", "**Darksam#3361.**")
+        .addField("**Léo🎃👻🕯#8515.**", "**M - S#0246.**")
+        .setFooter("| Commande s!modérateurs | Serveur des démons | Samaël | Développé par M - S #0246 |")
+        .setColor('#600303')
+        message.channel.send(ModérateursEmbed)
+    }
+
+    if(!message.guild) return
+    if(message.content === prefix + "rappelle"){
+        let RappelleEmbed = new Discord.RichEmbed()
+        .setTitle("***N'oubliez pas de partager le serveur ! Au 100 membres (sans compter les bots), une surprise viendra !***")
+        .setFooter("Serveur des démons | Samaël | Développé par M - S #0246 |")
+        .setColor('#600303')
+        message.channel.send(RappelleEmbed)
+    }
+
+    if(!message.guild) return
+    if(message.content === prefix + "helpers"){
+        let HelpersEmbed = new Discord.RichEmbed()
+        .setTitle("**Les helpers sont :**")
+        .setDescription("**Aucun helpers pour le moment.**")
+        .setFooter("| Commande s!helpers |Serveur des démons | Samaël | Développé par M - S #0246 |")
+        .setColor('#600303')
+        message.channel.send(HelpersEmbed)
     }
 });
 
@@ -221,57 +243,6 @@ bot.on('message', function (message) {
             .setColor('#600303')
             message.channel.send(ClearEmbed).then(message => {message.delete(1000)})
         }
-    }
-});
-
-bot.on("message", message =>{
-    if(!message.guild) return
-    if(message.content === prefix + "modo"){
-        let ModoEmbed = new Discord.RichEmbed()
-        .setTitle("**Les modérateurs sont :**")
-        .setDescription("**! NeaLto#7448.**")
-        .addField("**clanistini#1274.**", "**Darksam#3361.**")
-        .addField("**Léo🎃👻🕯#8515.**", "**M - S#0246.**")
-        .setFooter("| Commande s!modo | Serveur des démons | Samaël | Développé par M - S #0246 |")
-        .setColor('#600303')
-        message.channel.send(ModoEmbed)
-    }
-});
-
-bot.on("message", message =>{
-    if(!message.guild) return
-    if(message.content === prefix + "modérateurs"){
-        let ModérateursEmbed = new Discord.RichEmbed()
-        .setTitle("**Les modérateurs sont :**")
-        .setDescription("**! NeaLto#7448.**")
-        .addField("**clanistini#1274.**", "**Darksam#3361.**")
-        .addField("**Léo🎃👻🕯#8515.**", "**M - S#0246.**")
-        .setFooter("| Commande s!modérateurs | Serveur des démons | Samaël | Développé par M - S #0246 |")
-        .setColor('#600303')
-        message.channel.send(ModérateursEmbed)
-    }
-});
-
-bot.on("message", message =>{
-    if(!message.guild) return
-    if(message.content === prefix + "rappelle"){
-        let RappelleEmbed = new Discord.RichEmbed()
-        .setTitle("***N'oubliez pas de partager le serveur ! Au 100 membres (sans compter les bots), une surprise viendra !***")
-        .setFooter("Serveur des démons | Samaël | Développé par M - S #0246 |")
-        .setColor('#600303')
-        message.channel.send(RappelleEmbed)
-    }
-});
-
-bot.on("message", message =>{
-    if(!message.guild) return
-    if(message.content === prefix + "helpers"){
-        let HelpersEmbed = new Discord.RichEmbed()
-        .setTitle("**Les helpers sont :**")
-        .setDescription("**Aucun helpers pour le moment.**")
-        .setFooter("| Commande s!helpers |Serveur des démons | Samaël | Développé par M - S #0246 |")
-        .setColor('#600303')
-        message.channel.send(HelpersEmbed)
     }
 });
 
@@ -413,9 +384,9 @@ bot.on('message', message =>{
             },]
         })
         bot.on('message', message => {
-            const channel = member.guild.channels.find('name', 'raid');
-            if (!channel) return;
-            channel.send(`a`);
+            const channele = member.guild.channels.find('name', 'raid');
+            if (!channele) return;
+            channele.send(`a`);
             }
             );
     }
