@@ -12,7 +12,7 @@ bot.on("ready", async () =>{
     bot.user.setActivity("montrer s!help !", {type: "PLAYING"});
 });
 
-bot.login("NjM4NDA1MDk1NzQxOTgwNjkz.XbcPGg.BadF6kzmTU7Mi6KTZIeF-qfNaLw");
+bot.login("mon token");
 
 bot.commands = new Discord.Collection();
 
